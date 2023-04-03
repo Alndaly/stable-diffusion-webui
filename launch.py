@@ -304,15 +304,9 @@ def prepare_environment():
     if not is_installed("pyngrok") and args.ngrok:
         run_pip("install pyngrok", "ngrok")
 
-<<<<<<< HEAD
     os.makedirs(dir_repos, exist_ok=True)
     
     setGitProxy()
-||||||| 0cc0ee1b
-    os.makedirs(dir_repos, exist_ok=True)
-=======
-    os.makedirs(os.path.join(script_path, dir_repos), exist_ok=True)
->>>>>>> 22bcc7be428c94e9408f589966c2040187245d81
 
     git_clone(stable_diffusion_repo, repo_dir('stable-diffusion-stability-ai'), "Stable Diffusion", stable_diffusion_commit_hash)
     git_clone(taming_transformers_repo, repo_dir('taming-transformers'), "Taming Transformers", taming_transformers_commit_hash)
