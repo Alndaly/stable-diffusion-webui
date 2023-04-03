@@ -78,8 +78,12 @@ def extract_opt(args, name):
             del args[idx]
     return args, is_present, opt
 
+def setGitProxy():
+    run('git config --global http.proxy 127.0.0.1:7890')
+    run('git config --global httpx.proxy 127.0.0.1:7890')
 
 def run(command, desc=None, errdesc=None, custom_env=None, live=False):
+    print('执行命令:', command)
     if desc is not None:
         print(desc)
 
@@ -296,6 +300,8 @@ def prepare_environment():
         run_pip("install pyngrok", "ngrok")
 
     os.makedirs(dir_repos, exist_ok=True)
+    
+    setGitProxy()
 
     git_clone(stable_diffusion_repo, repo_dir('stable-diffusion-stability-ai'), "Stable Diffusion", stable_diffusion_commit_hash)
     git_clone(taming_transformers_repo, repo_dir('taming-transformers'), "Taming Transformers", taming_transformers_commit_hash)
